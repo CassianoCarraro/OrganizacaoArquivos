@@ -1,0 +1,6 @@
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.exe.config
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.exe
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.pdb
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.csprojResolveAssemblyReference.cache
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.exe
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.pdb

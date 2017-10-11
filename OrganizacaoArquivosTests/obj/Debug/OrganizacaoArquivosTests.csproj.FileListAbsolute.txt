@@ -1,0 +1,8 @@
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivosTests\bin\Debug\OrganizacaoArquivosTests.dll
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivosTests\bin\Debug\OrganizacaoArquivosTests.pdb
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivosTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivosTests\bin\Debug\OrganizacaoArquivos.exe
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivosTests\bin\Debug\OrganizacaoArquivos.pdb
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivosTests\obj\Debug\OrganizacaoArquivosTests.csprojResolveAssemblyReference.cache
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivosTests\obj\Debug\OrganizacaoArquivosTests.dll
+c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivosTests\obj\Debug\OrganizacaoArquivosTests.pdb
