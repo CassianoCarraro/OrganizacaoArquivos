@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrganizacaoArquivos
 {
     [Serializable]
-    public class Colaborador
+    public class Colaborador: Registro
     {
-        public const int TAM_REG = 256;
         private const int NOME_LEN = 50;
 
         private Int32 numero;
@@ -17,7 +12,12 @@ namespace OrganizacaoArquivos
         private Int32 idade;
         private Double salario;
 
-        public Colaborador(Int32 numero, String nome, Int32 idade, Double salario)
+        public Colaborador(Int32 numero) : base(512)
+        {
+            Numero = numero;
+        }
+
+        public Colaborador(Int32 numero, String nome, Int32 idade, Double salario) : base(512)
         {
             Numero = numero;
             Nome = nome;

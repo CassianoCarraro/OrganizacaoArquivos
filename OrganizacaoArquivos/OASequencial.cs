@@ -12,81 +12,112 @@ namespace OrganizacaoArquivos
         public OASequencial(String caminhoArqDados)
         {
             dados = new Arquivo(caminhoArqDados);
+            dados.abrir(FileMode.OpenOrCreate, FileAccess.ReadWrite);
         }
 
-        public object consultar(Object consulta)
+        ~OASequencial()
         {
-            throw new NotImplementedException();
+            dados.fechar();
+        }
+
+        public object consultar(Object registro, String attrId)
+        {
+            Int32 tamanhoRegistro = ((Registro)registro).Tamanho;
+            Int32 idRegistroTmp;
+            Int32 idRegistro = (Int32)obterPropriedade(registro, attrId);
+            Object registroTmp;
+
+            long ini = 0;
+            long fim = dados.Tamanho;
+            long meio = 0;
+            
+            dados.posicionar(0);
+
+            while (ini <= fim)
+            {
+                meio = (ini + fim) / 2;
+
+                dados.posicionar(meio);
+                registroTmp = dados.obterResgistro();
+                idRegistroTmp = (Int32)obterPropriedade(registroTmp, attrId);
+
+                if (idRegistro == idRegistroTmp)
+                {
+                    return registroTmp;
+                } else
+                {
+                    if (idRegistroTmp < idRegistro)
+                    {
+                        ini = meio + (tamanhoRegistro - 1);
+                    } else
+                    {
+                        fim = meio - (tamanhoRegistro - 1);
+                    }
+                }                
+            }
+
+            return null;
         }
 
         public void inserir(Object registro, String attrId)
         {
-            dados.abrir(FileMode.OpenOrCreate, FileAccess.ReadWrite);
-
+            dados.posicionar(0);
             Object registroArq = dados.obterResgistro();
             if (registroArq == null)
             {
                 dados.gravar(registro);
             } else
             {
-                Type tipoRegistro = registro.GetType();
-                PropertyInfo atributo = tipoRegistro.GetProperty(attrId);
-                Int32 idReg = (Int32)atributo.GetValue(registro);
-
-                Type tipoRegistroArq = registroArq.GetType();
-                PropertyInfo atributoArq = tipoRegistroArq.GetProperty(attrId);
-
-                String DEBUG = "";
-
-                do
+                if (verificarInserirFim(registro, attrId))
                 {
-                    Int32 idRegArq = (Int32)atributo.GetValue(registroArq);
+                    dados.gravarFim(registro);
+                } else
+                {
+                    Int32 idReg = (Int32)obterPropriedade(registro, attrId);
 
-                    DEBUG += idRegArq + "-";
-
-                    /*if (idReg < idRegArq)
+                    do
                     {
-                        dados.gravar(registro);
-                    }*/
+                        Int32 idRegArq = (Int32)obterPropriedade(registroArq, attrId);
 
-                    dados.avancar(256);
-                    registroArq = dados.obterResgistro();
+                        if (idReg <= idRegArq)
+                        {
+                            dados.gravar(registro, dados.Pos - ((Registro)registro).Tamanho, ((Registro)registro).Tamanho);
 
-                    /*if (registroArq == null)
-                    {
-                        dados.gravar(registro);
-                    }*/
-                } while (registroArq != null);
-
-                throw new Exception(DEBUG);
+                            break;
+                        }
+                        else
+                        {
+                            dados.posicionar(dados.Pos);
+                            registroArq = dados.obterResgistro();
+                            if (registroArq == null)
+                            {
+                                dados.gravarFim(registro);
+                            }
+                        }
+                    } while (registroArq != null);
+                }
             }
+        }
 
-            dados.fechar();
+        private Boolean verificarInserirFim(Object registro, String attrId)
+        {
+            Int32 idReg = (Int32)obterPropriedade(registro, attrId);
 
-            /*long pos = 0;
-            var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            dados.posicionarFim();
+            dados.avancar(-((Registro)registro).Tamanho);
 
-            using (FileStream fs = new FileStream(BASE_PATH + nomeArq, FileMode.Append))
-            {
-                MemoryStream stream = new MemoryStream();
-                bformatter.Serialize(stream, obj);
+            Object registroArq = dados.obterResgistro();
+            Int32 idRegFimArq = (Int32)obterPropriedade(registroArq, attrId);
 
-                fs.Write(stream.GetBuffer(), 0, stream.GetBuffer().Length);
-                pos = fs.Position - Colaborador.TAM_REG;
-                fs.WriteByte(Convert.ToByte('\n'));
+            return (idReg >= idRegFimArq);
+        }
 
-                stream.Close();
-            }
+        private Object obterPropriedade(Object registro, String attr)
+        {
+            Type tipoRegistro = registro.GetType();
+            PropertyInfo atributo = tipoRegistro.GetProperty(attr);
 
-            if (pos > 0)
-            {
-                pos--;
-            }
-
-            using (StreamWriter fs = new StreamWriter(BASE_PATH + nomeArqIdx, true))
-            {
-                fs.WriteLine(obj.Numero.ToString().PadLeft(10, '0') + ":" + pos.ToString().PadLeft(10, '0'));
-            }*/
+            return atributo.GetValue(registro);
         }
     }
 }

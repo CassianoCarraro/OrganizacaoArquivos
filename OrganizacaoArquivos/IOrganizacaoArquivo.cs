@@ -9,6 +9,6 @@ namespace OrganizacaoArquivos
     interface IOrganizacaoArquivo
     {
         void inserir(Object registro, String attrId);
-        Object consultar(Object consulta);
+        Object consultar(Object registro, String attrId);
     }
 }
