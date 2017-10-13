@@ -1,43 +1,86 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace OrganizacaoArquivos.Tests
 {
     [TestClass()]
     public class OASequencialTests
     {
-        private const int REGISTROS_TESTE = 100;
 
         [TestMethod()]
         public void consultarTest()
         {
-            /*OASequencial oaSequencial = new OASequencial("C:/Users/Cassiano/Desktop/trab_oa/sequencial_dados2");
+            String caminhoArqTeste = "C:/Users/Cassiano/Desktop/trab_oa/sequencial_teste_consulta";
+            File.Delete(caminhoArqTeste);
 
-            Colaborador colaborador = new Colaborador(2);
-            Colaborador colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador, "Numero");*/
+            gerarArquivo(3, caminhoArqTeste);
 
-            Assert.IsTrue(false);
+            OASequencial oaSequencial = new OASequencial(caminhoArqTeste, FileAccess.Read);
+
+            Colaborador colaborador0 = new Colaborador(0);
+            Colaborador colaborador1 = new Colaborador(1);
+            Colaborador colaborador2 = new Colaborador(2);
+            Colaborador colaborador3 = new Colaborador(3);
+            Colaborador colaboradorm1 = new Colaborador(-1);
+
+            Colaborador colaboradorConsulta;
+
+            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador0, "Numero");
+            Assert.AreEqual(colaboradorConsulta.Numero, colaborador0.Numero);
+
+            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador1, "Numero");
+            Assert.AreEqual(colaboradorConsulta.Numero, colaborador1.Numero);
+
+            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador2, "Numero");
+            Assert.AreEqual(colaboradorConsulta.Numero, colaborador2.Numero);
+
+            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador3, "Numero");
+            Assert.AreEqual(colaboradorConsulta, null);
+
+            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaboradorm1, "Numero");
+            Assert.AreEqual(colaboradorConsulta, null);
+
+            oaSequencial.finalizar();
         }
 
         [TestMethod()]
         public void inserirTest()
         {
-            OASequencial oaSequencial = new OASequencial("C:/Users/Cassiano/Desktop/trab_oa/sequencial_dados2");
+            String caminhoArqTeste = "C:/Users/Cassiano/Desktop/trab_oa/sequencial_teste_insercao";
+            File.Delete(caminhoArqTeste);
+            Int32 qtdReg = 100;
+
+            gerarArquivo(qtdReg, caminhoArqTeste);
+
+            OASequencial oaSequencial = new OASequencial(caminhoArqTeste, FileAccess.Read);
             Random aleatorio = new Random(5);
 
-            for (int i = 0; i < REGISTROS_TESTE; i++)
+            for (int i = 0; i < qtdReg; i++)
+            {
+                Colaborador colaborador = new Colaborador(i, "João " + i, aleatorio.Next(16, 65), aleatorio.NextDouble() * 1000);
+                Colaborador colaboradorBusca = (Colaborador)oaSequencial.consultar(colaborador, "Numero");
+                
+                Assert.AreEqual(colaborador.Numero, colaboradorBusca.Numero);
+                Assert.AreEqual(colaborador.Nome, colaboradorBusca.Nome);
+                Assert.AreEqual(colaborador.Salario, colaboradorBusca.Salario);
+            }
+
+            oaSequencial.finalizar();
+        }
+
+        private void gerarArquivo(Int32 qtdReg, String caminhoArq)
+        {
+            OASequencial oaSequencial = new OASequencial(caminhoArq);
+            Random aleatorio = new Random(5);
+
+            for (int i = 0; i < qtdReg; i++)
             {
                 Colaborador colaborador = new Colaborador(i, "João " + i, aleatorio.Next(16, 65), aleatorio.NextDouble() * 1000);
                 oaSequencial.inserir(colaborador, "Numero");
             }
 
-            /*for (int i = 0; i < REGISTROS_TESTE; i++)
-            {
-                Colaborador colaborador = new Colaborador(i, "João " + i, aleatorio.Next(16, 65), aleatorio.NextDouble() * 1000);
-                Colaborador colaboradorBusca = (Colaborador)oaSequencial.consultar(colaborador, "Numero");
-            }*/
-
-            Assert.IsTrue(true);
+            oaSequencial.finalizar();
         }
     }
 }

@@ -1,13 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 
 namespace OrganizacaoArquivos
 {
     public class OASequencial : IOrganizacaoArquivo
     {
         private Arquivo dados;
+
+        public OASequencial(String caminhoArqDados, FileAccess permissaoAcesso)
+        {
+            dados = new Arquivo(caminhoArqDados);
+            dados.abrir(FileMode.OpenOrCreate, permissaoAcesso);
+        }
 
         public OASequencial(String caminhoArqDados)
         {
@@ -33,9 +38,14 @@ namespace OrganizacaoArquivos
             
             dados.posicionar(0);
 
-            while (ini <= fim)
+            while (ini <= fim && ini < dados.Tamanho)
             {
                 meio = (ini + fim) / 2;
+
+                if ((meio / (tamanhoRegistro / 2)) % 2 != 0)
+                {
+                    meio -= tamanhoRegistro / 2;
+                }
 
                 dados.posicionar(meio);
                 registroTmp = dados.obterResgistro();
@@ -48,10 +58,10 @@ namespace OrganizacaoArquivos
                 {
                     if (idRegistroTmp < idRegistro)
                     {
-                        ini = meio + (tamanhoRegistro - 1);
+                        ini = meio + tamanhoRegistro;
                     } else
                     {
-                        fim = meio - (tamanhoRegistro - 1);
+                        fim = meio - tamanhoRegistro;
                     }
                 }                
             }
@@ -97,6 +107,11 @@ namespace OrganizacaoArquivos
                     } while (registroArq != null);
                 }
             }
+        }
+
+        public void finalizar()
+        {
+            dados.fechar();
         }
 
         private Boolean verificarInserirFim(Object registro, String attrId)

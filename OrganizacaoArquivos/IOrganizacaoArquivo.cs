@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrganizacaoArquivos
 {
@@ -10,5 +6,6 @@ namespace OrganizacaoArquivos
     {
         void inserir(Object registro, String attrId);
         Object consultar(Object registro, String attrId);
+        void finalizar();
     }
 }
