@@ -3,7 +3,7 @@
 namespace OrganizacaoArquivos
 {
     [Serializable]
-    public class Colaborador: Registro
+    public class Colaborador : Registro
     {
         private const int NOME_LEN = 50;
 

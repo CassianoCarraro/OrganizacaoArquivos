@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace OrganizacaoArquivos
 {
-    class Arquivo
+    public class Arquivo
     {
         private String caminhoArquivo;
         private FileStream fs;

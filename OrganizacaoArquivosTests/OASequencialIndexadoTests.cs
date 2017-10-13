@@ -1,21 +1,22 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
 namespace OrganizacaoArquivos.Tests
 {
     [TestClass]
-    public class OASequencialTests
+    public class OASequencialIndexadoTests
     {
-        private const String ARQ_DADOS_TESTE = "C:/Users/Cassiano/Desktop/trab_oa/sequencial_teste";
+        private const String ARQ_DADOS_TESTE = "C:/Users/Cassiano/Desktop/trab_oa/sequencial_indexado_teste";
+        private const String ARQ_INDICES_TESTE = "C:/Users/Cassiano/Desktop/trab_oa/sequencial_indexado_indices_teste";
 
         [TestMethod]
         public void consultarTest()
         {
             Cleanup();
 
-            gerarArquivo(3, ARQ_DADOS_TESTE);
-            OASequencial oaSequencial = new OASequencial(ARQ_DADOS_TESTE, FileAccess.Read);
+            gerarArquivo(3, ARQ_DADOS_TESTE, ARQ_INDICES_TESTE);
+            OASequencialIndexado oaSequencialIndexado = new OASequencialIndexado(ARQ_DADOS_TESTE, ARQ_INDICES_TESTE, FileAccess.Read);
 
             Colaborador colaborador0 = new Colaborador(0);
             Colaborador colaborador1 = new Colaborador(1);
@@ -25,22 +26,22 @@ namespace OrganizacaoArquivos.Tests
 
             Colaborador colaboradorConsulta;
 
-            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador0, "Numero");
+            colaboradorConsulta = (Colaborador)oaSequencialIndexado.consultar(colaborador0, "Numero");
             Assert.AreEqual(colaboradorConsulta.Numero, colaborador0.Numero);
 
-            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador1, "Numero");
+            colaboradorConsulta = (Colaborador)oaSequencialIndexado.consultar(colaborador1, "Numero");
             Assert.AreEqual(colaboradorConsulta.Numero, colaborador1.Numero);
 
-            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador2, "Numero");
+            colaboradorConsulta = (Colaborador)oaSequencialIndexado.consultar(colaborador2, "Numero");
             Assert.AreEqual(colaboradorConsulta.Numero, colaborador2.Numero);
 
-            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaborador3, "Numero");
+            colaboradorConsulta = (Colaborador)oaSequencialIndexado.consultar(colaborador3, "Numero");
             Assert.AreEqual(colaboradorConsulta, null);
 
-            colaboradorConsulta = (Colaborador)oaSequencial.consultar(colaboradorm1, "Numero");
+            colaboradorConsulta = (Colaborador)oaSequencialIndexado.consultar(colaboradorm1, "Numero");
             Assert.AreEqual(colaboradorConsulta, null);
 
-            oaSequencial.finalizar();
+            oaSequencialIndexado.finalizar();
         }
 
         [TestMethod]
@@ -49,42 +50,43 @@ namespace OrganizacaoArquivos.Tests
             Cleanup();
 
             Int32 qtdReg = 100;
-            gerarArquivo(qtdReg, ARQ_DADOS_TESTE);
+            gerarArquivo(qtdReg, ARQ_DADOS_TESTE, ARQ_INDICES_TESTE);
 
-            OASequencial oaSequencial = new OASequencial(ARQ_DADOS_TESTE, FileAccess.Read);
+            OASequencialIndexado oaSequencialIndexado = new OASequencialIndexado(ARQ_DADOS_TESTE, ARQ_INDICES_TESTE, FileAccess.Read);
             Random aleatorio = new Random(5);
 
             for (int i = 0; i < qtdReg; i++)
             {
                 Colaborador colaborador = new Colaborador(i, "João " + i, aleatorio.Next(16, 65), aleatorio.NextDouble() * 1000);
-                Colaborador colaboradorBusca = (Colaborador)oaSequencial.consultar(colaborador, "Numero");
-                
+                Colaborador colaboradorBusca = (Colaborador)oaSequencialIndexado.consultar(colaborador, "Numero");
+
                 Assert.AreEqual(colaborador.Numero, colaboradorBusca.Numero);
                 Assert.AreEqual(colaborador.Nome, colaboradorBusca.Nome);
                 Assert.AreEqual(colaborador.Salario, colaboradorBusca.Salario);
             }
 
-            oaSequencial.finalizar();
+            oaSequencialIndexado.finalizar();
         }
 
-        private void gerarArquivo(Int32 qtdReg, String caminhoArq)
+        private void gerarArquivo(Int32 qtdReg, String caminhoArq, String caminhoArqIndicesTeste)
         {
-            OASequencial oaSequencial = new OASequencial(caminhoArq);
+            OASequencialIndexado oaSequencialIndexado = new OASequencialIndexado(caminhoArq, caminhoArqIndicesTeste);
             Random aleatorio = new Random(5);
 
             for (int i = 0; i < qtdReg; i++)
             {
                 Colaborador colaborador = new Colaborador(i, "João " + i, aleatorio.Next(16, 65), aleatorio.NextDouble() * 1000);
-                oaSequencial.inserir(colaborador, "Numero");
+                oaSequencialIndexado.inserir(colaborador, "Numero");
             }
 
-            oaSequencial.finalizar();
+            oaSequencialIndexado.finalizar();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
             File.Delete(ARQ_DADOS_TESTE);
+            File.Delete(ARQ_INDICES_TESTE);
         }
     }
 }

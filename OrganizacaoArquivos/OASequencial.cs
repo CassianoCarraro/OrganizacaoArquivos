@@ -1,31 +1,19 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 
 namespace OrganizacaoArquivos
 {
-    public class OASequencial : IOrganizacaoArquivo
+    public class OASequencial : OrganizacaoArquivo
     {
-        private Arquivo dados;
-
-        public OASequencial(String caminhoArqDados, FileAccess permissaoAcesso)
+        public OASequencial(String caminhoArqDados) : base(caminhoArqDados)
         {
-            dados = new Arquivo(caminhoArqDados);
-            dados.abrir(FileMode.OpenOrCreate, permissaoAcesso);
         }
 
-        public OASequencial(String caminhoArqDados)
+        public OASequencial(String caminhoArqDados, FileAccess permissaoAcesso) : base(caminhoArqDados, permissaoAcesso)
         {
-            dados = new Arquivo(caminhoArqDados);
-            dados.abrir(FileMode.OpenOrCreate, FileAccess.ReadWrite);
         }
 
-        ~OASequencial()
-        {
-            dados.fechar();
-        }
-
-        public object consultar(Object registro, String attrId)
+        public override object consultar(Object registro, String attrId)
         {
             Int32 tamanhoRegistro = ((Registro)registro).Tamanho;
             Int32 idRegistroTmp;
@@ -69,7 +57,7 @@ namespace OrganizacaoArquivos
             return null;
         }
 
-        public void inserir(Object registro, String attrId)
+        public override void inserir(Object registro, String attrId)
         {
             dados.posicionar(0);
             Object registroArq = dados.obterResgistro();
@@ -109,11 +97,6 @@ namespace OrganizacaoArquivos
             }
         }
 
-        public void finalizar()
-        {
-            dados.fechar();
-        }
-
         private Boolean verificarInserirFim(Object registro, String attrId)
         {
             Int32 idReg = (Int32)obterPropriedade(registro, attrId);
@@ -125,14 +108,6 @@ namespace OrganizacaoArquivos
             Int32 idRegFimArq = (Int32)obterPropriedade(registroArq, attrId);
 
             return (idReg >= idRegFimArq);
-        }
-
-        private Object obterPropriedade(Object registro, String attr)
-        {
-            Type tipoRegistro = registro.GetType();
-            PropertyInfo atributo = tipoRegistro.GetProperty(attr);
-
-            return atributo.GetValue(registro);
         }
     }
 }
