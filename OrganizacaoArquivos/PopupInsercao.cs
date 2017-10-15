@@ -19,9 +19,7 @@ namespace OrganizacaoArquivos
             try
             {
                 Colaborador colaborador = new Colaborador(Decimal.ToInt32(txtNumero.Value), txtNome.Text, Decimal.ToInt32(txtIdade.Value), Double.Parse(txtSalario.Text));
-
                 oa.inserir(colaborador, "Numero");
-                oa.finalizar();
 
                 if (MessageBox.Show("Informações inseridas.", "Inserir", MessageBoxButtons.OK) == System.Windows.Forms.DialogResult.Yes)
                 {

@@ -247,7 +247,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "App";
             this.Text = "Organização de Arquivos";
-            this.Load += new System.EventHandler(this.App_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSeqNum)).EndInit();
             this.groupBox2.ResumeLayout(false);

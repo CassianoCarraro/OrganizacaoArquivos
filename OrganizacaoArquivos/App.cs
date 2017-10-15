@@ -31,11 +31,6 @@ namespace OrganizacaoArquivos
             this.txtResultadoPtr = txtResultadoPtr;
         }
 
-        private void App_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnInserirSequencial_Click(object sender, EventArgs e)
         {
             OASequencial oaSequencial = new OASequencial(CAMINHO_BASE + ARQ_SEQ);
