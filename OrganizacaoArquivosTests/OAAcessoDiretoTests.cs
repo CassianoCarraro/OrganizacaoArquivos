@@ -8,7 +8,7 @@ namespace OrganizacaoArquivos.Tests
     [TestClass]
     public class OAAcessoDiretoTests
     {
-        private const String ARQ_DADOS_TESTE = "C:/Users/Cassiano/Desktop/trab_oa/acesso_direto_teste";
+        private const String ARQ_DADOS_TESTE = "C:/Users/DANIEL/Desktop/organArq/acesso_direto_teste";
 
         [TestMethod]
         public void consultarTest()
@@ -49,7 +49,7 @@ namespace OrganizacaoArquivos.Tests
         {
             Cleanup();
 
-            Int32 qtdReg = 100;
+            Int32 qtdReg = 101;
             gerarArquivo(qtdReg, ARQ_DADOS_TESTE);
 
             OAAcessoDireto oaAcessoDireto = new OAAcessoDireto(ARQ_DADOS_TESTE, FileAccess.Read);

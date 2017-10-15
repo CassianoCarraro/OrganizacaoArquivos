@@ -29,16 +29,15 @@ namespace OrganizacaoArquivos
             long posInicial = hashGerado * NUM_REG;
             long pos = 0;
 
-            dados.posicionar(0);
-
+ 
             if(hashGerado < 0 || hashGerado > 100)
             {
                 return null;
             }
-
+            dados.posicionar(posInicial);
             while (pos < NUM_REG)
             {
-                dados.posicionar(posInicial);
+                
                 registroTmp = dados.obterResgistro();
                 if (registroTmp == null)
                 {
@@ -55,7 +54,8 @@ namespace OrganizacaoArquivos
                     }
                     else
                     {
-                        dados.avancar(pos * ((Registro)registro).Tamanho);
+                        posInicial += 512;
+                        dados.posicionar(posInicial);
                     }
                     pos++;
                 }
@@ -77,6 +77,7 @@ namespace OrganizacaoArquivos
 
                 long posInicial = hashGerado * NUM_REG;
                 dados.posicionar(posInicial);
+
                 Object registroArq = dados.obterResgistro();
                 if (registroArq == null)
                 {
@@ -97,12 +98,13 @@ namespace OrganizacaoArquivos
                         }
                         else
                         {
-                            posInicial += ((Registro)registro).Tamanho;
+                            posInicial += 512;
                             dados.posicionar(posInicial);
                             registroArq = dados.obterResgistro();
                             if (registroArq == null)
                             {
                                 dados.gravar(registro);
+                                break;
                             }
                         }
                     }
