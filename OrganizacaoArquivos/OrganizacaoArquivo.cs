@@ -25,7 +25,7 @@ namespace OrganizacaoArquivos
             dados.fechar();
         }
 
-        public void finalizar()
+        public virtual void finalizar()
         {
             dados.fechar();
         }

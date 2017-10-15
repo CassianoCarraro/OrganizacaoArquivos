@@ -45,7 +45,7 @@ namespace OrganizacaoArquivos
             oaIndices.inserir(indice, "Numero");
         }
 
-        public new void finalizar()
+        public override void finalizar()
         {
             base.finalizar();
             oaIndices.finalizar();

@@ -50,5 +50,10 @@ namespace OrganizacaoArquivos
             get { return salario; }
             set { salario = value; }
         }
+
+        public override string ToString()
+        {
+            return Numero + " - " + Nome.Trim() + " - " + Idade + " - " + Salario;
+        }
     }
 }

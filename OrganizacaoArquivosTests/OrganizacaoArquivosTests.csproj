@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="OAAcessoDiretoTests.cs" />
     <Compile Include="OASequencialTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OASequencialIndexadoTests.cs" />

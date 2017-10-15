@@ -1,6 +1,9 @@
-c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.exe.config
-c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.exe
-c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.pdb
-c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.csprojResolveAssemblyReference.cache
-c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.exe
-c:\users\cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.pdb
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.exe.config
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.exe
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\bin\Debug\OrganizacaoArquivos.pdb
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.exe
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.pdb
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.csprojResolveAssemblyReference.cache
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.App.resources
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.csproj.GenerateResource.Cache
+C:\Users\Cassiano\documents\visual studio 2015\Projects\OrganizacaoArquivos\OrganizacaoArquivos\obj\Debug\OrganizacaoArquivos.popupInsercao.resources

@@ -8,7 +8,7 @@ namespace OrganizacaoArquivos.Tests
     [TestClass]
     public class OAAcessoDiretoTests
     {
-        private const String ARQ_DADOS_TESTE = "C:/Users/daniel/Desktop/organArq/acesso_direto_teste";
+        private const String ARQ_DADOS_TESTE = "C:/Users/Cassiano/Desktop/trab_oa/acesso_direto_teste";
 
         [TestMethod]
         public void consultarTest()
