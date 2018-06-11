@@ -7,7 +7,7 @@ namespace OrganizacaoArquivos
 {
     public partial class App : Form
     {
-        public const String CAMINHO_BASE = "C:/Users/Cassiano/Desktop/trab_oa/";
+        public const String CAMINHO_BASE = "C:/";
         public const String ARQ_SEQ = "sequencial";
         public const String ARQ_SEQ_IDX = "indexado";
         public const String ARQ_SEQ_IDX_INDICES = "indexado_indices";
@@ -35,7 +35,7 @@ namespace OrganizacaoArquivos
         {
             OASequencial oaSequencial = new OASequencial(CAMINHO_BASE + ARQ_SEQ);
             var popup = new PopupInsercao(oaSequencial);
-        
+
             popup.Show(this);
         }
 

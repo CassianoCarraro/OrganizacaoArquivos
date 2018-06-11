@@ -7,7 +7,7 @@ namespace OrganizacaoArquivos.Tests
     [TestClass]
     public class OASequencialTests
     {
-        private const String ARQ_DADOS_TESTE = "C:/Users/Cassiano/Desktop/trab_oa/sequencial_teste";
+        private const String ARQ_DADOS_TESTE = "C:/sequencial_teste";
 
         [TestMethod]
         public void consultarTest()
@@ -58,7 +58,7 @@ namespace OrganizacaoArquivos.Tests
             {
                 Colaborador colaborador = new Colaborador(i, "João " + i, aleatorio.Next(16, 65), aleatorio.NextDouble() * 1000);
                 Colaborador colaboradorBusca = (Colaborador)oaSequencial.consultar(colaborador, "Numero");
-                
+
                 Assert.AreEqual(colaborador.Numero, colaboradorBusca.Numero);
                 Assert.AreEqual(colaborador.Nome, colaboradorBusca.Nome);
                 Assert.AreEqual(colaborador.Salario, colaboradorBusca.Salario);

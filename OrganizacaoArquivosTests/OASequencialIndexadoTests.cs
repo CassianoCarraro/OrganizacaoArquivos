@@ -7,8 +7,8 @@ namespace OrganizacaoArquivos.Tests
     [TestClass]
     public class OASequencialIndexadoTests
     {
-        private const String ARQ_DADOS_TESTE = "C:/Users/Cassiano/Desktop/trab_oa/sequencial_indexado_teste";
-        private const String ARQ_INDICES_TESTE = "C:/Users/Cassiano/Desktop/trab_oa/sequencial_indexado_indices_teste";
+        private const String ARQ_DADOS_TESTE = "C:/sequencial_indexado_teste";
+        private const String ARQ_INDICES_TESTE = "C:/sequencial_indexado_indices_teste";
 
         [TestMethod]
         public void consultarTest()
